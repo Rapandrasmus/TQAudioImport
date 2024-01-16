@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhmp0oov5h3ve"]
+
+[ext_resource type="Script" path="res://addons/tqaudioimport/import_button.gd" id="1_d22vu"]
+
+[node name="TQAudioImport" type="Button" node_paths=PackedStringArray("dialog")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Import Audio"
+script = ExtResource("1_d22vu")
+dialog = NodePath("FileDialog")
+
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Open File(s)"
+initial_position = 1
+size = Vector2i(392, 159)
+ok_button_text = "Open"
+file_mode = 1
+access = 2
+filters = PackedStringArray("*.ogg, *.mp3, *.wav, *.flac ; Audio Files", "*.ogg, *.mp3, *.wav, *.flac ; Audio Files")
+
+[connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]
+[connection signal="files_selected" from="FileDialog" to="." method="_on_file_dialog_files_selected"]
